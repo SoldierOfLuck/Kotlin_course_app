@@ -6,27 +6,25 @@ import ru.lukmanov.kotlin_course_app.model.Repository
 import ru.lukmanov.kotlin_course_app.model.RepositoryImpl
 import java.lang.Thread.sleep
 
-class MainViewModel (
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val repositoryImpl: Repository = RepositoryImpl()
-) :
-    ViewModel() {
+class MainViewModel(
+    private val liveDataToObserve : MutableLiveData<AppState> = MutableLiveData(),
+    private val repositoryImpl: Repository = RepositoryImpl())
+    : ViewModel() {
 
     fun getLiveData() = liveDataToObserve
-
-    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
-
-    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
-
     fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocalSourceWorld()  = getDataFromLocalSource(isRussian = false)
 
-    private fun getDataFromLocalSource(isRussian: Boolean) {
+    private fun getDataFromLocalSource(isRussian : Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(1000)
+            sleep(2000)
             liveDataToObserve.postValue(AppState.Success(
-                if (isRussian) repositoryImpl.getWeatherFromLocalStorageRus()
-                else repositoryImpl.getWeatherFromLocalStorageWorld()))
+                if (isRussian)
+                    repositoryImpl.getWeatherFromLocalStorageRus()
+                else
+                    repositoryImpl.getWeatherFromLocalStorageWorld()))
         }.start()
     }
 }
