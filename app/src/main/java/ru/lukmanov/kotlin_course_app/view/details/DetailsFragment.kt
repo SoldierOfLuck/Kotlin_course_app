@@ -13,25 +13,29 @@ import ru.lukmanov.kotlin_course_app.databinding.FragmentDetailsBinding
 import ru.lukmanov.kotlin_course_app.model.Weather
 import ru.lukmanov.kotlin_course_app.model.WeatherDTO
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(R.layout.fragment_main) {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var weatherBundle: Weather
 
     private val onLoadListener: WeatherLoader.WeatherLoaderListener =
         object : WeatherLoader.WeatherLoaderListener {
+
             override fun onLoaded(weatherDTO: WeatherDTO) {
                 displayWeather(weatherDTO)
             }
+
             override fun onFailed(throwable: Throwable) {
-//Обработка ошибки
+                //Обработка ошибки
             }
         }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,7 +43,7 @@ class DetailsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        weatherBundle = arguments?.getParcelable(BUNDLE_EXTRA) ?: Weather()
+        weatherBundle = arguments?.getParcelable<Weather>(BUNDLE_EXTRA) ?: Weather()
         binding.mainView.visibility = View.GONE
         binding.loadingLayout.visibility = View.VISIBLE
         val loader = WeatherLoader(onLoadListener, weatherBundle.city.lat, weatherBundle.city.lon)
@@ -47,7 +51,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun displayWeather(weatherDTO: WeatherDTO) {
-        with(binding) {
+        with (binding) {
             mainView.visibility = View.VISIBLE
             loadingLayout.visibility = View.GONE
             val city = weatherBundle.city
@@ -62,9 +66,15 @@ class DetailsFragment : Fragment() {
             feelsLikeValue.text = weatherDTO.fact?.feels_like.toString()
             wind_value.text = weatherDTO.fact?.wind_speed.toString()
             humidity_value.text = weatherDTO.fact?.humidity.toString()
-            season_value.text = weatherDTO.fact?.season
+            season_value.text = weatherDTO.fact?.season.toString()
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         const val BUNDLE_EXTRA = "weather"
         fun newInstance(bundle: Bundle): DetailsFragment {

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.lukmanov.kotlin_course_app.R
 import ru.lukmanov.kotlin_course_app.model.Weather
@@ -33,11 +32,6 @@ class MainFragmentAdapter (private var onItemViewClickListener: OnItemViewClickL
                     weather.city.city
                 setOnClickListener {
                     onItemViewClickListener?.onItemViewClick(weather)
-                    Toast.makeText(
-                        itemView.context,
-                        weather.city.city,
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
         }
