@@ -110,26 +110,26 @@
             app:layout_constraintTop_toBottomOf="@+id/humidity_icon"
             app:layout_constraintHorizontal_weight="1"/>
         <ImageView
-            android:id="@+id/Wind_icon"
+            android:id="@+id/pressure_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="@dimen/margin_15_dp"
             android:layout_marginEnd="@dimen/margin_15_dp"
-            android:src="@drawable/windicon"
+            android:src="@drawable/pressure_icon"
             app:layout_constraintEnd_toStartOf="@id/air_humidity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feelsLikeValue"
             />
         <TextView
-            android:id="@+id/wind"
+            android:id="@+id/pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_15_dp"
             android:layout_marginEnd="@dimen/margin_15_dp"
-            android:text="@string/wind"
+            android:text="@string/pressure"
             app:layout_constraintEnd_toStartOf="@id/air_humidity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Wind_icon"
+            app:layout_constraintTop_toBottomOf="@+id/pressure_icon"
             app:layout_constraintHorizontal_weight="1"/>
         <ImageView
             android:id="@+id/season_icon"
@@ -153,31 +153,67 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/season_icon"
             app:layout_constraintHorizontal_weight="1"/>
-        <TextView
-            android:id="@+id/humidity_value"
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15_dp"
-            android:textSize="@dimen/HumidityText"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/air_humidity"
-            tools:text="80"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/air_humidity">
+            <TableRow>
+                <TextView
+                    android:id="@+id/humidity_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_15_dp"
+                    android:layout_marginEnd="@dimen/margin_5_dp"
+                    android:textSize="@dimen/HumidityText"
+                    android:textStyle="bold"
+                    tools:text="80"
+                    android:layout_column="1"
+                    />
+                <TextView
+                    android:id="@+id/percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_15_dp"
+                    android:textSize="@dimen/HumidityText"
+                    android:textStyle="bold"
+                    android:text="%"
+                    android:layout_column="1"
+                    />
+            </TableRow>
+        </TableLayout>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/air_humidity"
+            app:layout_constraintTop_toBottomOf="@+id/pressure"
+            >
+            <TableRow>
         <TextView
-            android:id="@+id/wind_value"
+            android:id="@+id/pressure_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_15_dp"
-            android:layout_marginEnd="@dimen/margin_15_dp"
+            android:layout_marginEnd="@dimen/margin_5_dp"
             android:textSize="@dimen/HumidityText"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/air_humidity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wind"
-            tools:text="11 km/h"
+            tools:text="11"
+            android:layout_column="2"
             />
+        <TextView
+            android:id="@+id/mm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15_dp"
+            android:textSize="@dimen/HumidityText"
+            android:textStyle="bold"
+            android:text="@string/mm"
+            android:layout_column="1"
+            />
+            </TableRow>
+        </TableLayout>
         <TextView
             android:id="@+id/season_value"
             android:layout_width="wrap_content"
@@ -198,7 +234,7 @@
             android:layout_height="match_parent"
             android:background="@color/loadingBackground"
             android:visibility="gone"
-            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteX="93dp"
             tools:layout_editor_absoluteY="0dp"
             tools:visibility="visible">
 

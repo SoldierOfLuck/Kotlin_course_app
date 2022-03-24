@@ -14,7 +14,8 @@
     <string name="season">Season</string>
     <string name="season_value">%s"</string>
     <string name="summer">Summer</string>
-    <string name="kmh">km/h</string>
+    <string name="mm">mmhg</string>
+    <string name="pressure">Pressure</string>
 
     <string name="threads">Threads</string>
     <string name="in_main_thread">In main thread</string>
