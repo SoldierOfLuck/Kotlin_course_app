@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_main.*
 import ru.lukmanov.kotlin_course_app.R
 import ru.lukmanov.kotlin_course_app.databinding.FragmentMainBinding
 import ru.lukmanov.kotlin_course_app.model.Weather
+import ru.lukmanov.kotlin_course_app.utils.CircleTransformation
 import ru.lukmanov.kotlin_course_app.view.details.DetailsFragment
 import ru.lukmanov.kotlin_course_app.viewmodel.AppState
 import ru.lukmanov.kotlin_course_app.viewmodel.MainViewModel
@@ -68,10 +71,18 @@ class MainFragment : Fragment() {
     private fun changeWeatherDataSet() =
         if (isDataSetRus) {
             viewModel.getWeatherFromLocalSourceWorld()
-            binding.mainFragmentFAB.setImageResource(R.drawable.ic_global)
+            Picasso
+                .get()
+                .load("https://e7.pngegg.com/pngimages/405/294/png-clipart-round-white-blue-and-red-illustration-flag-of-russia-computer-icons-russia-blue-flag.png")
+                .transform(CircleTransformation())
+                .into(mainFragmentFAB)
         } else {
             viewModel.getWeatherFromLocalSourceRus()
-            binding.mainFragmentFAB.setImageResource(R.drawable.ic_russia)
+            Picasso
+                .get()
+                .load("https://yt3.ggpht.com/ytc/AKedOLQiGeQETGluQuUgQ5hnQKa4Dvp8wdHjwEyGRMY=s900-c-k-c0x00ffffff-no-rj")
+                .transform(CircleTransformation())
+                .into(mainFragmentFAB)
         }.also { isDataSetRus = !isDataSetRus }
 
     override fun onDestroyView() {
