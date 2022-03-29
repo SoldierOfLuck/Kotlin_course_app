@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/drawable/ic_history.xml" value="0.119" />
+        <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/drawable/ic_russia.xml" value="0.1365" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_details.xml" value="0.264" />
+        <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_history.xml" value="0.21037998146431883" />
+        <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_history_recyclerview_item.xml" value="0.24635416666666668" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_main.xml" value="0.24635416666666668" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_main_recycler_item.xml" value="0.24635416666666668" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/fragment_threads.xml" value="0.24635416666666668" />
+        <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/loading_layout.xml" value="0.24635416666666668" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/main_activity.xml" value="0.24635416666666668" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/main_fragment.xml" value="0.23323615160349853" />
         <entry key="..\:/GeekBrains/KotlinHomework/Kotlin_course_app/app/src/main/res/layout/testcolumn.xml" value="0.24635416666666668" />
