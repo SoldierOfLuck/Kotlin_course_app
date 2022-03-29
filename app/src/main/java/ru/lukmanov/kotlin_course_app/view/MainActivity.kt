@@ -10,6 +10,7 @@ import ru.lukmanov.kotlin_course_app.R
 import ru.lukmanov.kotlin_course_app.databinding.MainActivityBinding
 import ru.lukmanov.kotlin_course_app.view.experiments.MainBroadcastReceiver
 import ru.lukmanov.kotlin_course_app.view.experiments.ThreadsFragment
+import ru.lukmanov.kotlin_course_app.view.history.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
@@ -55,8 +56,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
+            R.id.menu_history -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

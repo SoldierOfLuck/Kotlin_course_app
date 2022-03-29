@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 import ru.lukmanov.kotlin_course_app.R
 import ru.lukmanov.kotlin_course_app.databinding.FragmentDetailsBinding
+import ru.lukmanov.kotlin_course_app.model.City
 import ru.lukmanov.kotlin_course_app.model.Weather
 import ru.lukmanov.kotlin_course_app.utils.CircleTransformation
 import ru.lukmanov.kotlin_course_app.viewmodel.AppState
@@ -54,7 +55,7 @@ class DetailsFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        DispalyImages()
+        dispalyImages()
         weatherBundle = arguments?.getParcelable<Weather>(BUNDLE_EXTRA) ?: Weather()
 
         viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it) })
@@ -66,16 +67,16 @@ class DetailsFragment : Fragment(R.layout.fragment_main) {
         when (appState) {
             is AppState.Success -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 setWeather(appState.weatherData[0])
             }
             is AppState.Loading -> {
                 binding.mainView.visibility = View.GONE
-                binding.loadingLayout.visibility = View.VISIBLE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.VISIBLE
             }
             is AppState.Error -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 binding.mainView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload),
@@ -92,6 +93,7 @@ class DetailsFragment : Fragment(R.layout.fragment_main) {
 
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         binding.cityName.text = city.city
         binding.cityCoordinates.text = String.format(
             getString(R.string.city_coordinates),
@@ -121,7 +123,21 @@ class DetailsFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    private fun DispalyImages() {
+    private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
+    }
+
+    private fun dispalyImages() {
         Picasso
             .get()
             .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")

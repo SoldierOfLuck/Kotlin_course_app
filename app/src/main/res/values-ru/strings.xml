@@ -30,4 +30,6 @@
     <string name="handler_thread">Поток обработчика</string>
     <string name="service">Сервис</string>
     <string name="service_broadcast">Сервис + Транслятор</string>
+
+    <string name="menu_title_history">История</string>
 </resources>
