@@ -11,6 +11,7 @@ import ru.lukmanov.kotlin_course_app.databinding.MainActivityBinding
 import ru.lukmanov.kotlin_course_app.view.experiments.MainBroadcastReceiver
 import ru.lukmanov.kotlin_course_app.view.experiments.ThreadsFragment
 import ru.lukmanov.kotlin_course_app.view.history.HistoryFragment
+import ru.lukmanov.kotlin_course_app.view.contentprovider.ContentProviderFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
@@ -60,6 +61,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_content_provider -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, ContentProviderFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
